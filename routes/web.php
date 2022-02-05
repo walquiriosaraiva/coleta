@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\LivroController;
+use App\Http\Controllers\FichaController;
 use App\Http\Controllers\ClimaRegiaoController;
 use App\Http\Controllers\UsuarioController;
 
@@ -37,7 +38,16 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:web'], function () {
     Route::delete('livros/{livro}', [LivroController::class, 'destroy'])->name('livros.destroy');
     Route::get('livros/{livro}/edit', [LivroController::class, 'edit'])->name('livros.edit');
 
-    Route::get('clima', [ClimaRegiaoController::class, 'index'])->name('clima');
+    /**
+     * Rotas das fichas do eleitor
+     */
+    Route::get('fichas', [FichaController::class, 'index'])->name('fichas.index');
+    Route::post('fichas', [FichaController::class, 'store'])->name('fichas.store');
+    Route::get('fichas/create', [FichaController::class, 'create'])->name('fichas.create');
+    Route::get('fichas/{ficha}', [FichaController::class, 'show'])->name('fichas.show');
+    Route::put('fichas/{ficha}', [FichaController::class, 'update'])->name('fichas.update');
+    Route::delete('fichas/{ficha}', [FichaController::class, 'destroy'])->name('fichas.destroy');
+    Route::get('fichas/{ficha}/edit', [FichaController::class, 'edit'])->name('fichas.edit');
 
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 

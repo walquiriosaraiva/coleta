@@ -33,7 +33,7 @@
                                                name="email"
                                                required
                                                autofocus
-                                               value="walquiriosaraiva@gmail.com">
+                                               value="ediltoncosta@gmail.com">
                                         @if ($errors->has('email'))
                                             <span class="text-danger">{{ $errors->first('email') }}</span>
                                         @endif
@@ -47,7 +47,7 @@
                                                id="password"
                                                class="form-control"
                                                name="password"
-                                               value="Esqueci01"
+                                               value="123456"
                                                required>
                                         @if ($errors->has('password'))
                                             <span class="text-danger">{{ $errors->first('password') }}</span>

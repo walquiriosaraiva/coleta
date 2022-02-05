@@ -40,15 +40,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">Acesso restrito</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Cadastrar</a>
-                    </li>
                 @else
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('livros.index') }}">Livros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('clima') }}">Clima da região</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.edit', session()->get('user')->id) }}">Editar

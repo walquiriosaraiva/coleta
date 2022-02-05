@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLivroTable extends Migration
+class CreatePerfilTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateLivroTable extends Migration
      */
     public function up()
     {
-        Schema::create('livro', function (Blueprint $table) {
+        Schema::create('perfil', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->text('descricao')->nullable();
-            $table->string('autor')->nullable();
-            $table->integer('numero_pagina')->nullable();
-            $table->date('data_cadastro');
+            $table->string('name');
         });
     }
 
@@ -30,6 +26,6 @@ class CreateLivroTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('livro');
+        Schema::dropIfExists('perfil');
     }
 }
