@@ -15,11 +15,11 @@ Aplicação desenvolvida com Laravel + MySQL utilizando docker:
 - Utilizando como base de dados banco de dados MySQL (https://dev.mysql.com/doc/).
 
 # Passo 1 - Informações sobre a aplicação
-- Clone do projeto pelo link [Github](https://github.com/walquiriosaraiva/desafio.git)
+- Clone do projeto pelo link [Github](https://github.com/walquiriosaraiva/coleta.git)
 - Copie o conteúdo do arquivo .env.example para .env utilizando o comando `cp .env.example .env`
 ## Passo 2 - docker-compose
-- Execute o comando `docker-compose up -d --build desafio`
-- Com o comando acima será feito a build do projeto desafio e agora estamos quase lá
+- Execute o comando `docker-compose up -d --build coleta`
+- Com o comando acima será feito a build do projeto coleta e agora estamos quase lá
 
 ## Passo 3 - rodando os container adicionais para manipular comandos Composer e Artisan
 - Execute o comando do composer update `docker-compose run --rm composer update`
@@ -32,14 +32,14 @@ Aplicação desenvolvida com Laravel + MySQL utilizando docker:
 
 # Problemas de permissão
 ## Caso tenha problema de permissão e não consiga rodar com o docker tente novamente seguindo os comandos abaixo
-- Derrube o ambiente de desafio - `docker-compose down`
+- Derrube o ambiente de coleta - `docker-compose down`
 - Reconstrua os contêiners - `docker-compose build --no-cache`
 
 ## Caso queira executar fora do Docker basta seguir os passos abaixo
 # Lembrando que para executar localmente você precisa ter o PHP Instalado de preferência na versão 8.0 e o banco de dados MySQL
 
 # Passo 1
-- Clone do projeto pelo link [Github](https://github.com/walquiriosaraiva/desafio.git)
+- Clone do projeto pelo link [Github](https://github.com/walquiriosaraiva/coleta.git)
 
 # Passo 2
 - Cria uma cópia do arquivo .env.example para .env e altere as informações referente ao banco de dados conforme seu banco mysql local
