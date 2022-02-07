@@ -25,18 +25,9 @@ Route::get('/', function () {
 
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
-Route::get('registration', [AuthController::class, 'registration'])->name('register');
-Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post');
 Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:web'], function () {
-    Route::get('livros', [LivroController::class, 'index'])->name('livros.index');
-    Route::post('livros', [LivroController::class, 'store'])->name('livros.store');
-    Route::get('livros/create', [LivroController::class, 'create'])->name('livros.create');
-    Route::get('livros/{livro}', [LivroController::class, 'show'])->name('livros.show');
-    Route::put('livros/{livro}', [LivroController::class, 'update'])->name('livros.update');
-    Route::delete('livros/{livro}', [LivroController::class, 'destroy'])->name('livros.destroy');
-    Route::get('livros/{livro}/edit', [LivroController::class, 'edit'])->name('livros.edit');
 
     /**
      * Rotas das fichas do eleitor
@@ -48,9 +39,18 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:web'], function () {
     Route::put('fichas/{ficha}', [FichaController::class, 'update'])->name('fichas.update');
     Route::delete('fichas/{ficha}', [FichaController::class, 'destroy'])->name('fichas.destroy');
     Route::get('fichas/{ficha}/edit', [FichaController::class, 'edit'])->name('fichas.edit');
+    Route::post('fichas/cidades', [FichaController::class, 'cidades'])->name('fichas.cidades');
 
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('user/{id}/edit', [UsuarioController::class, 'edit'])->name('user.edit');
     Route::put('user/{id}', [UsuarioController::class, 'update'])->name('user.update');
+
+    Route::get('users', [UsuarioController::class, 'index'])->name('users.index');
+    Route::post('users', [UsuarioController::class, 'store'])->name('users.store');
+    Route::get('users/create', [UsuarioController::class, 'create'])->name('users.create');
+    Route::get('users/{user}', [UsuarioController::class, 'show'])->name('users.show');
+    Route::put('users/{user}', [UsuarioController::class, 'update'])->name('users.update');
+    Route::delete('users/{user}', [UsuarioController::class, 'destroy'])->name('users.destroy');
+    Route::get('users/{user}/edit', [UsuarioController::class, 'edit'])->name('users.edit');
 });

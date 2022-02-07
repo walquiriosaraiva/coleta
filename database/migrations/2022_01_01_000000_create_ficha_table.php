@@ -14,13 +14,21 @@ class CreateFichaTable extends Migration
     public function up()
     {
         Schema::create('ficha', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('nome');
-            $table->text('endereco')->nullable();
+            $table->string('cep')->nullable();
+            $table->string('rua')->nullable();
+            $table->string('bairro')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('uf')->nullable();
+            $table->integer('ibge')->nullable();
             $table->string('telefone')->nullable();
-            $table->string('rede_social')->nullable();
-            $table->unsignedBigInteger('seq_cidade')->nullable();
-            $table->unsignedBigInteger('id_user_cadastro')->nullable();
+            $table->string('telefone_whatsapp')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->unsignedInteger('id_user_cadastro')->nullable();
+            $table->unsignedInteger('id_area_atuacao')->nullable();
+            $table->string('outra_atuacao')->nullable();
             $table->date('data_cadastro');
         });
     }

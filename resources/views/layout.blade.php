@@ -20,13 +20,13 @@
     <script src="/js/jquery.dataTables.min.js"></script>
     <script src="/js/dataTables.bootstrap4.min.js"></script>
 
-    <title>Desafio</title>
+    <title>Sistema</title>
 </head>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
     <div class="container">
-        <a class="navbar-brand" href="/dashboard">Desafio</a>
+        <a class="navbar-brand" href="/dashboard">Sistema</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -42,12 +42,21 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('livros.index') }}">Livros</a>
+                        <a class="nav-link" href="{{ route('fichas.index') }}">Ficha de
+                            eleitor</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.edit', session()->get('user')->id) }}">Editar
                             perfil</a>
                     </li>
+
+                    @if(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id === 1)
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.index') }}">Usuários</a>
+                        </li>
+                    @endif
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}">Sair</a>
                     </li>

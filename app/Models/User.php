@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'id_perfil'
     ];
 
     /**
@@ -41,4 +42,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function perfil()
+    {
+        return $this->hasMany(Perfil::class, 'id', 'id_perfil');
+    }
 }

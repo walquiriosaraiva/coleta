@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PerfilTableSeeder::class,
             UsersTableSeeder::class,
+            AreaAtuacaoTableSeeder::class,
         ]);
     }
 }

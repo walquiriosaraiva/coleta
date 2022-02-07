@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('fichas.create')}}"
+                            <a href="{{ route('users.create')}}"
                                class="btn btn-primary btn-sm">Novo</a>
                         </div>
                         <div class="card-body">
@@ -27,29 +27,28 @@
                             </div>
 
                             <table class="table table-responsive-lg table-striped" style="width:100%"
-                                   id="tabelaFichas">
+                                   id="tabelaUsuarios">
                                 <thead>
                                 <tr>
                                     <td>ID</td>
                                     <td>Nome</td>
-                                    <td>Telefone</td>
-                                    <td>Data de cadastro</td>
+                                    <td>Perfil</td>
                                     <td class="text-center">Ações</td>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($fichas as $ficha)
+                                @foreach($users as $user)
                                     <tr>
-                                        <td>{{$ficha->id}}</td>
-                                        <td>{{$ficha->nome}}</td>
-                                        <td>{{$ficha->telefone}}</td>
-                                        <td>{{$ficha->data_cadastro->format('d/m/Y')}}</td>
+                                        <td>{{$user->id}}</td>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->perfil[0]->name}}</td>
+
                                         <td class="text-center">
-                                            <a href="{{ route('fichas.show', $ficha->id)}}"
+                                            <a href="{{ route('users.show', $user->id)}}"
                                                class="btn btn-primary btn-sm">Detalhes</a>
-                                            <a href="{{ route('fichas.edit', $ficha->id)}}"
+                                            <a href="{{ route('users.edit', $user->id)}}"
                                                class="btn btn-primary btn-sm">Editar</a>
-                                            <form action="{{ route('fichas.destroy', $ficha->id)}}" method="post"
+                                            <form action="{{ route('users.destroy', $user->id)}}" method="post"
                                                   style="display: inline-block">
                                                 @csrf
                                                 @method('DELETE')
@@ -79,7 +78,7 @@
 
         $(document).ready(function () {
 
-            $('#tabelaFichas').DataTable({
+            $('#tabelaUsuarios').DataTable({
                 "language": {
                     "lengthMenu": "Mostrando _MENU_ registros por página",
                     "zeroRecords": "Nada encontrado",

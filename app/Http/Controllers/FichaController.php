@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AreaAtuacao;
 use App\Models\Ficha;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class FichaController
@@ -27,7 +29,8 @@ class FichaController extends Controller
      */
     public function create()
     {
-        return view('ficha.create');
+        $areaAtuacao = AreaAtuacao::all();
+        return view('ficha.create', compact('areaAtuacao'));
     }
 
     /**
@@ -37,13 +40,24 @@ class FichaController extends Controller
     public function store(Request $request)
     {
         $storeData = $request->validate([
-            'titulo' => 'required|max:255',
-            'descricao' => 'required',
-            'autor' => 'required',
-            'numero_pagina' => 'required|numeric'
+            'nome' => 'required|max:255',
+            'cep' => 'required'
         ]);
 
         $storeData['data_cadastro'] = Carbon::now();
+        $storeData['id_user_cadastro'] = auth()->user()->id;
+        $storeData['telefone_whatsapp'] = $request->get('telefone_whatsapp');
+        $storeData['cep'] = $request->get('cep');
+        $storeData['rua'] = $request->get('rua');
+        $storeData['bairro'] = $request->get('bairro');
+        $storeData['cidade'] = $request->get('cidade');
+        $storeData['uf'] = $request->get('uf');
+        $storeData['ibge'] = $request->get('ibge');
+        $storeData['telefone'] = $request->get('telefone');
+        $storeData['facebook'] = $request->get('facebook');
+        $storeData['instagram'] = $request->get('instagram');
+        $storeData['id_area_atuacao'] = $request->get('id_area_atuacao');
+        $storeData['outra_atuacao'] = $request->get('outra_atuacao');
 
         try {
             Ficha::create($storeData);
@@ -67,7 +81,9 @@ class FichaController extends Controller
     public function show($id)
     {
         $ficha = Ficha::findOrFail($id);
-        return view('ficha.show', compact('ficha'));
+        $areaAtuacao = AreaAtuacao::all();
+        $estados = DB::table('tb_estado')->get();
+        return view('ficha.show', compact('ficha', 'estados', 'areaAtuacao'));
     }
 
     /**
@@ -77,7 +93,8 @@ class FichaController extends Controller
     public function edit($id)
     {
         $ficha = Ficha::findOrFail($id);
-        return view('ficha.edit', compact('ficha'));
+        $areaAtuacao = AreaAtuacao::all();
+        return view('ficha.edit', compact('ficha', 'areaAtuacao'));
     }
 
     /**
@@ -88,11 +105,24 @@ class FichaController extends Controller
     public function update(Request $request, $id)
     {
         $updateData = $request->validate([
-            'titulo' => 'required|max:255',
-            'descricao' => 'required',
-            'autor' => 'required',
-            'numero_pagina' => 'required|numeric'
+            'nome' => 'required|max:255',
+            'cep' => 'required'
         ]);
+
+        $updateData['data_cadastro'] = Carbon::now();
+        $updateData['id_user_cadastro'] = auth()->user()->id;
+        $updateData['telefone_whatsapp'] = $request->get('telefone_whatsapp');
+        $updateData['cep'] = $request->get('cep');
+        $updateData['rua'] = $request->get('rua');
+        $updateData['bairro'] = $request->get('bairro');
+        $updateData['cidade'] = $request->get('cidade');
+        $updateData['uf'] = $request->get('uf');
+        $updateData['ibge'] = $request->get('ibge');
+        $updateData['telefone'] = $request->get('telefone');
+        $updateData['facebook'] = $request->get('facebook');
+        $updateData['instagram'] = $request->get('instagram');
+        $updateData['id_area_atuacao'] = $request->get('id_area_atuacao');
+        $updateData['outra_atuacao'] = $request->get('outra_atuacao');
 
         try {
             Ficha::whereId($id)->update($updateData);
@@ -126,6 +156,17 @@ class FichaController extends Controller
                 ->withInput()
                 ->with(['error' => 'Erro ao tentar excluir o ficha']);
         endif;
+    }
+
+    public function cidades(Request $request)
+    {
+        $data = $request->all();
+        $cidades = DB::table('tb_cidade')
+            ->where('seq_estado', '=', $data['seq_estado'])
+            ->orderBy('nom_cidade')
+            ->get();
+
+        return response()->json($cidades);
     }
 
 }

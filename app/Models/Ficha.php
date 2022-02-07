@@ -17,5 +17,27 @@ class Ficha extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['nome', 'endereco', 'telefone', 'rede_social', 'seq_cidade', 'id_user_cadastro', 'data_cadastro'];
+    protected $fillable = [
+        'nome',
+        'cep',
+        'rua',
+        'bairro',
+        'cidade',
+        'uf',
+        'ibge',
+        'telefone',
+        'telefone_whatsapp',
+        'facebook',
+        'instagram',
+        'id_user_cadastro',
+        'data_cadastro',
+        'id_area_atuacao',
+        'outra_atuacao'
+    ];
+
+    public function areaAtuacao()
+    {
+        return $this->hasMany(AreaAtuacao::class, 'id', 'id_area_atuacao');
+    }
+
 }
