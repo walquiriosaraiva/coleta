@@ -6,7 +6,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">Cadastro de eleitor</div>
+                        <div class="card-header">Cadastro de pessoa</div>
                         <div class="card-body">
 
                             @if ($errors->any())

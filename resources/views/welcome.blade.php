@@ -39,7 +39,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <h2>Gente da gente!</h2>
-                <p class="mb-0">Plataforma de cadastro de eleitor.</p>
+                <p class="mb-0">Plataforma de cadastro de pessoa.</p>
             </div>
         </div>
     </div>

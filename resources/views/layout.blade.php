@@ -43,7 +43,7 @@
                 @else
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('fichas.index') }}">Ficha de
-                            eleitor</a>
+                            pessoa</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('user.edit', session()->get('user')->id) }}">Editar
