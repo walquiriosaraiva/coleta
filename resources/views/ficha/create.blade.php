@@ -97,12 +97,14 @@
                                     <div class="form-group col-md-12">
                                         <label for="facebook">Facebook</label>
                                         <input type="text" class="form-control" id="facebook" name="facebook"
-                                               placeholder="Facebook" value="{{ old('facebook') }}">
+                                               placeholder="Facebook"
+                                               value="https://www.facebook.com/{{ old('facebook') }}">
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="instagram">Instagram</label>
                                         <input type="text" class="form-control" id="instagram" name="instagram"
-                                               placeholder="Instagram" value="{{ old('instagram') }}">
+                                               placeholder="Instagram"
+                                               value="https://www.instagram.com/{{ old('instagram') }}">
                                     </div>
                                 </div>
 

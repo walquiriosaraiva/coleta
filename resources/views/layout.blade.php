@@ -26,7 +26,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
     <div class="container">
-        <a class="navbar-brand" href="/dashboard">Sistema</a>
+        <a class="navbar-brand" href="/dashboard">Plataforma de cadastro</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -46,17 +46,27 @@
                             <a class="nav-link" href="{{ route('fichas.index') }}">Ficha de
                                 pessoa</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.edit', session()->get('user')->id) }}">Editar
-                                perfil</a>
-                        </li>
 
                         @if(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id === 1)
 
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('fichas.relatorio') }}">Relatório de pessoas</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('area-atuacao.index') }}">Área de atuação</a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('users.index') }}">Usuários</a>
                             </li>
+
                         @endif
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.edit', session()->get('user')->id) }}">Editar
+                                perfil</a>
+                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}">Sair</a>

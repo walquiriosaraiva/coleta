@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\LivroController;
 use App\Http\Controllers\FichaController;
-use App\Http\Controllers\ClimaRegiaoController;
+use App\Http\Controllers\AreaAtuacaoController;
 use App\Http\Controllers\UsuarioController;
 
 /*
@@ -33,6 +32,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:web'], function () {
      * Rotas das fichas do eleitor
      */
     Route::get('fichas', [FichaController::class, 'index'])->name('fichas.index');
+    Route::get('relatorio', [FichaController::class, 'relatorio'])->name('fichas.relatorio');
     Route::post('fichas', [FichaController::class, 'store'])->name('fichas.store');
     Route::get('fichas/create', [FichaController::class, 'create'])->name('fichas.create');
     Route::get('fichas/{ficha}', [FichaController::class, 'show'])->name('fichas.show');
@@ -46,6 +46,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:web'], function () {
     Route::get('user/{id}/edit', [UsuarioController::class, 'edit'])->name('user.edit');
     Route::put('user/{id}', [UsuarioController::class, 'update'])->name('user.update');
 
+    /**
+     * crud de usuários
+     */
     Route::get('users', [UsuarioController::class, 'index'])->name('users.index');
     Route::post('users', [UsuarioController::class, 'store'])->name('users.store');
     Route::get('users/create', [UsuarioController::class, 'create'])->name('users.create');
@@ -53,4 +56,15 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:web'], function () {
     Route::put('users/{user}', [UsuarioController::class, 'update'])->name('users.update');
     Route::delete('users/{user}', [UsuarioController::class, 'destroy'])->name('users.destroy');
     Route::get('users/{user}/edit', [UsuarioController::class, 'edit'])->name('users.edit');
+
+    /**
+     * crud de área de atuação
+     */
+    Route::get('area-atuacao', [AreaAtuacaoController::class, 'index'])->name('area-atuacao.index');
+    Route::post('area-atuacao', [AreaAtuacaoController::class, 'store'])->name('area-atuacao.store');
+    Route::get('area-atuacao/create', [AreaAtuacaoController::class, 'create'])->name('area-atuacao.create');
+    Route::get('area-atuacao/{id}', [AreaAtuacaoController::class, 'show'])->name('area-atuacao.show');
+    Route::put('area-atuacao/{id}', [AreaAtuacaoController::class, 'update'])->name('area-atuacao.update');
+    Route::delete('area-atuacao/{id}', [AreaAtuacaoController::class, 'destroy'])->name('area-atuacao.destroy');
+    Route::get('area-atuacao/{id}/edit', [AreaAtuacaoController::class, 'edit'])->name('area-atuacao.edit');
 });

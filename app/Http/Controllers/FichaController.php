@@ -24,6 +24,12 @@ class FichaController extends Controller
         return view('ficha.index', compact('fichas'));
     }
 
+    public function relatorio()
+    {
+        $fichas = Ficha::all();
+        return view('ficha.relatorio', compact('fichas'));
+    }
+
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
