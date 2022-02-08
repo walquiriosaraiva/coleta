@@ -20,7 +20,7 @@
     <script src="/js/jquery.dataTables.min.js"></script>
     <script src="/js/dataTables.bootstrap4.min.js"></script>
 
-    <title>Sistema</title>
+    <title>Plataforma de cadastro</title>
 </head>
 <body>
 
@@ -41,25 +41,27 @@
                         <a class="nav-link" href="{{ route('login') }}">Acesso restrito</a>
                     </li>
                 @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('fichas.index') }}">Ficha de
-                            pessoa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('user.edit', session()->get('user')->id) }}">Editar
-                            perfil</a>
-                    </li>
+                    @if (\Illuminate\Support\Facades\Auth::user())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('fichas.index') }}">Ficha de
+                                pessoa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.edit', session()->get('user')->id) }}">Editar
+                                perfil</a>
+                        </li>
 
-                    @if(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id === 1)
+                        @if(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id === 1)
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('users.index') }}">Usuários</a>
+                            </li>
+                        @endif
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users.index') }}">Usuários</a>
+                            <a class="nav-link" href="{{ route('logout') }}">Sair</a>
                         </li>
                     @endif
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Sair</a>
-                    </li>
                 @endguest
             </ul>
 

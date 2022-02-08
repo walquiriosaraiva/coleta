@@ -25,7 +25,7 @@
                                 @csrf
                                 <input type="hidden" name="ibge" id="ibge">
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-8">
                                         <label for="nome">Nome</label>
                                         <input type="text" class="form-control" id="nome" name="nome"
                                                placeholder="Nome completo" value="{{ $ficha->nome }}">
@@ -35,12 +35,26 @@
                                         <label for="telefone">Telefone</label>
                                         <input type="text" class="form-control" id="telefone" name="telefone"
                                                placeholder="Telefone" value="{{ $ficha->telefone }}">
-                                        <div class="form-check">
+                                        <div class="form-check form-check-inline">
                                             <input type="checkbox" class="form-check-input" id="telefone_whatsapp"
                                                    name="telefone_whatsapp"
                                                 {{$ficha->telefone_whatsapp ? "checked" : "" }} >
                                             <label class="form-check-label" for="telefone_whatsapp">Whatsapp?</label>
                                         </div>
+                                        <div class="form-check form-check-inline">
+                                            <input type="checkbox" class="form-check-input" id="telefone_telegram"
+                                                   name="telefone_telegram"
+                                                {{$ficha->telefone_telegram ? "checked" : "" }} >
+                                            <label class="form-check-label" for="telefone_telegram">Telegram?</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="email">E-mail</label>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                               placeholder="E-mail" value="{{ $ficha->email }}">
                                     </div>
                                 </div>
 
@@ -50,10 +64,15 @@
                                         <input type="text" class="form-control" id="cep" name="cep"
                                                placeholder="CEP" value="{{ $ficha->cep }}">
                                     </div>
-                                    <div class="form-group col-md-10">
+                                    <div class="form-group col-md-8">
                                         <label for="rua">Endereço</label>
                                         <input type="text" class="form-control" id="rua" name="rua"
                                                placeholder="Endereço" value="{{ $ficha->rua }}">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="numero">Número</label>
+                                        <input type="text" class="form-control" id="numero" name="numero"
+                                               placeholder="Número" value="{{ $ficha->numero }}">
                                     </div>
 
                                 </div>
@@ -111,12 +130,12 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 offset-md-4">
+                                <div class="form-group">
                                     <button type="submit" class="btn btn-primary">
                                         Atualizar
                                     </button>
                                     <a href="{{ route('fichas.index')}}"
-                                       class="btn btn-primary">Voltar</a>
+                                       class="btn btn-info">Voltar</a>
                                 </div>
 
                             </form>

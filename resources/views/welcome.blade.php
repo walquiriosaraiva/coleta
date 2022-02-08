@@ -4,12 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Plataforma de cadastro</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://startbootstrap.github.io/startbootstrap-full-width-pics/css/styles.css">
+
+    <style>
+        .cabecalho {
+            background-image: url('images/principal.jpeg');
+        }
+    </style>
 
 </head>
 <body class="antialiased">
@@ -29,8 +35,7 @@
     </div>
 </nav>
 <!-- Header - set the background image for the header in the line below-->
-<header class="py-5 bg-image-full"
-        style="background-image: url('images/principal.jpeg')">
+<header class="py-5 bg-image-full cabecalho">
     <div style="height: 15rem"></div>
 </header>
 <!-- Content section-->
@@ -39,7 +44,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <h2>Gente da gente!</h2>
-                <p class="mb-0">Plataforma de cadastro de pessoa.</p>
+                <p class="mb-0">Plataforma de cadastro de pessoas.</p>
             </div>
         </div>
     </div>

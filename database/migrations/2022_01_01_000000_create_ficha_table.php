@@ -18,12 +18,15 @@ class CreateFichaTable extends Migration
             $table->string('nome');
             $table->string('cep')->nullable();
             $table->string('rua')->nullable();
+            $table->string('numero')->nullable();
             $table->string('bairro')->nullable();
             $table->string('cidade')->nullable();
             $table->string('uf')->nullable();
             $table->integer('ibge')->nullable();
+            $table->string('email')->nullable();
             $table->string('telefone')->nullable();
             $table->string('telefone_whatsapp')->nullable();
+            $table->string('telefone_telegram')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->unsignedInteger('id_user_cadastro')->nullable();
