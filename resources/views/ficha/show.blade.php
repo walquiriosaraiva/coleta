@@ -135,37 +135,6 @@
             if (parseInt($('#id_area_atuacao').val()) !== 4) {
                 $('#div_outra_area').hide();
             }
-            /*
-            if ($('#estado').val()) {
-                $('#seq_cidade').hide();
-                $('.carregando').html('- carregando as informações').show();
-                var _token = $('input[name="_token"]').val();
-                var seq_cidade_selected = $('#seq_cidade_selected').val();
-                var seq_estado = $('#estado').val();
-                $.ajax({
-                    url: "{{ route('fichas.cidades') }}",
-                    method: "POST",
-                    data: {seq_estado: seq_estado, _token: _token},
-                    success: function (data) {
-                        var options = '<option value=""></option>';
-
-                        for (var i = 0; i < data.length; i++) {
-                            var selecionado = parseInt(data[i].seq_cidade) === parseInt(seq_cidade_selected) ? 'selected' : '';
-
-                            options += "<option value='" + data[i].seq_cidade + "' " + selecionado +
-                                " >" +
-                                data[i].nom_cidade + "</option>";
-                        }
-                        $('#seq_cidade').html(options).show();
-                        $('.carregando').hide();
-                    }
-                });
-            } else {
-                $('#seq_cidade').html(
-                    '<option value="">-- Escolha um estado --</option>'
-                );
-            }
-            */
         });
     </script>
 @endsection

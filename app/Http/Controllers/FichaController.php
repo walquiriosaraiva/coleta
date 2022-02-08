@@ -6,7 +6,6 @@ use App\Models\AreaAtuacao;
 use App\Models\Ficha;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Class FichaController
@@ -91,8 +90,7 @@ class FichaController extends Controller
     {
         $ficha = Ficha::findOrFail($id);
         $areaAtuacao = AreaAtuacao::all();
-        $estados = DB::table('tb_estado')->get();
-        return view('ficha.show', compact('ficha', 'estados', 'areaAtuacao'));
+        return view('ficha.show', compact('ficha', 'areaAtuacao'));
     }
 
     /**
@@ -168,17 +166,6 @@ class FichaController extends Controller
                 ->withInput()
                 ->with(['error' => 'Erro ao tentar excluir o ficha']);
         endif;
-    }
-
-    public function cidades(Request $request)
-    {
-        $data = $request->all();
-        $cidades = DB::table('tb_cidade')
-            ->where('seq_estado', '=', $data['seq_estado'])
-            ->orderBy('nom_cidade')
-            ->get();
-
-        return response()->json($cidades);
     }
 
 }

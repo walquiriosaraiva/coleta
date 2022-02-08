@@ -39,7 +39,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:web'], function () {
     Route::put('fichas/{ficha}', [FichaController::class, 'update'])->name('fichas.update');
     Route::delete('fichas/{ficha}', [FichaController::class, 'destroy'])->name('fichas.destroy');
     Route::get('fichas/{ficha}/edit', [FichaController::class, 'edit'])->name('fichas.edit');
-    Route::post('fichas/cidades', [FichaController::class, 'cidades'])->name('fichas.cidades');
 
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
