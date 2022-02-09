@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\FichaController;
 use App\Http\Controllers\AreaAtuacaoController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\PerfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:web'], function () {
      */
     Route::get('fichas', [FichaController::class, 'index'])->name('fichas.index');
     Route::get('relatorio', [FichaController::class, 'relatorio'])->name('fichas.relatorio');
+    Route::post('pesquisa-relatorio', [FichaController::class, 'relatorio'])->name('fichas.pesquisa-relatorio');
     Route::post('fichas', [FichaController::class, 'store'])->name('fichas.store');
     Route::get('fichas/create', [FichaController::class, 'create'])->name('fichas.create');
     Route::get('fichas/{ficha}', [FichaController::class, 'show'])->name('fichas.show');
@@ -66,4 +68,15 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:web'], function () {
     Route::put('area-atuacao/{id}', [AreaAtuacaoController::class, 'update'])->name('area-atuacao.update');
     Route::delete('area-atuacao/{id}', [AreaAtuacaoController::class, 'destroy'])->name('area-atuacao.destroy');
     Route::get('area-atuacao/{id}/edit', [AreaAtuacaoController::class, 'edit'])->name('area-atuacao.edit');
+
+    /**
+     * crud de perfis
+     */
+    Route::get('perfil', [PerfilController::class, 'index'])->name('perfil.index');
+    Route::post('perfil', [PerfilController::class, 'store'])->name('perfil.store');
+    Route::get('perfil/create', [PerfilController::class, 'create'])->name('perfil.create');
+    Route::get('perfil/{id}', [PerfilController::class, 'show'])->name('perfil.show');
+    Route::put('perfil/{id}', [PerfilController::class, 'update'])->name('perfil.update');
+    Route::delete('perfil/{id}', [PerfilController::class, 'destroy'])->name('perfil.destroy');
+    Route::get('perfil/{id}/edit', [PerfilController::class, 'edit'])->name('perfil.edit');
 });

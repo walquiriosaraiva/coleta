@@ -7,7 +7,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{ route('users.create')}}"
+                            <a href="{{ route('perfil.create') }}"
                                class="btn btn-primary btn-sm">Novo</a>
                         </div>
                         <div class="card-body">
@@ -27,26 +27,23 @@
                             </div>
 
                             <table class="table table-responsive-lg table-striped" style="width:100%"
-                                   id="tabelaUsuarios">
+                                   id="tabelaPerfil">
                                 <thead>
                                 <tr>
                                     <td>ID</td>
                                     <td>Nome</td>
-                                    <td>Perfil</td>
                                     <td class="text-center">Ações</td>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($users as $user)
+                                @foreach($perfis as $perfil)
                                     <tr>
-                                        <td>{{$user->id}}</td>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->perfil[0]->name}}</td>
-
+                                        <td>{{$perfil->id}}</td>
+                                        <td>{{$perfil->name}}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('users.edit', $user->id)}}"
+                                            <a href="{{ route('perfil.edit', $perfil->id)}}"
                                                class="btn btn-primary btn-sm">Editar</a>
-                                            <form action="{{ route('users.destroy', $user->id)}}" method="post"
+                                            <form action="{{ route('perfil.destroy', $perfil->id)}}" method="post"
                                                   style="display: inline-block">
                                                 @csrf
                                                 @method('DELETE')
@@ -76,7 +73,7 @@
 
         $(document).ready(function () {
 
-            $('#tabelaUsuarios').DataTable({
+            $('#tabelaPerfil').DataTable({
                 "language": {
                     "lengthMenu": "Mostrando _MENU_ registros por página",
                     "zeroRecords": "Nada encontrado",
@@ -88,14 +85,7 @@
                         "next": "Próxima",
                         "previous": "Anterior"
                     }
-                },
-                dom: 'Bfrtip',
-                responsive: true,
-                pageLength: 25,
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
-
+                }
             });
 
         });

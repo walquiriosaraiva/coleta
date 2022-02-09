@@ -35,7 +35,8 @@ class Ficha extends Model
         'id_user_cadastro',
         'data_cadastro',
         'id_area_atuacao',
-        'outra_atuacao'
+        'outra_atuacao',
+        'aniversario'
     ];
 
     public function areaAtuacao()

@@ -38,10 +38,17 @@
                                 </div>
 
                                 <div class="form-row">
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-10">
                                         <label for="email">E-mail</label>
                                         <input type="email" class="form-control" id="email" name="email"
                                                placeholder="E-mail" value="{{ $ficha->email }}" disabled>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="aniversario">Data de nascimento</label>
+                                        <input type="text"
+                                               class="form-control" id="aniversario"
+                                               name="aniversario"
+                                               placeholder="Dia/Mês" value="{{ $ficha->aniversario }}" disabled>
                                     </div>
                                 </div>
 

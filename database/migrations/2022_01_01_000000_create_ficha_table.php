@@ -33,6 +33,7 @@ class CreateFichaTable extends Migration
             $table->unsignedInteger('id_area_atuacao')->nullable();
             $table->string('outra_atuacao')->nullable();
             $table->date('data_cadastro');
+            $table->string('aniversario')->nullable();
         });
     }
 

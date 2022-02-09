@@ -50,11 +50,16 @@
                         @if(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id === 1)
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('fichas.relatorio') }}">Relatório de pessoas</a>
+                                <a class="nav-link" href="{{ route('fichas.relatorio') }}">Relatório de
+                                    pessoas</a>
                             </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('area-atuacao.index') }}">Área de atuação</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('perfil.index') }}">Perfis</a>
                             </li>
 
                             <li class="nav-item">

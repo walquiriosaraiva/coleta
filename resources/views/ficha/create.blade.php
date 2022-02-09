@@ -50,10 +50,17 @@
                                 </div>
 
                                 <div class="form-row">
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-10">
                                         <label for="email">E-mail</label>
                                         <input type="email" class="form-control" id="email" name="email"
                                                placeholder="E-mail" value="{{ old('email') }}">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="aniversario">Data de nascimento</label>
+                                        <input type="text"
+                                               class="form-control" id="aniversario"
+                                               name="aniversario"
+                                               placeholder="Dia/Mês" value="{{ old('aniversario') }}">
                                     </div>
                                 </div>
 
@@ -148,9 +155,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
+    <script src="/js/jquery.mask.js"></script>
 
     <script>
         $(document).ready(function () {
+
+            $('#aniversario').mask('00/00');
 
             if (parseInt($('#id_area_atuacao').val()) !== 4) {
                 $('#div_outra_area').hide();

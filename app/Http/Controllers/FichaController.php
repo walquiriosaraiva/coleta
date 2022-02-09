@@ -6,6 +6,7 @@ use App\Models\AreaAtuacao;
 use App\Models\Ficha;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class FichaController
@@ -23,10 +24,27 @@ class FichaController extends Controller
         return view('ficha.index', compact('fichas'));
     }
 
-    public function relatorio()
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function relatorio(Request $request)
     {
-        $fichas = Ficha::all();
-        return view('ficha.relatorio', compact('fichas'));
+        $lideranca = DB::table('users')
+            ->select('users.id', 'users.name')
+            ->join('perfil', 'perfil.id', '=', 'users.id_perfil')
+            ->get();
+
+        $data = $request->all();
+        if (isset($data['id_user_cadastro']) && $data['id_user_cadastro']):
+            $userSelecionado = (int)$data['id_user_cadastro'];
+            $fichas = Ficha::where('id_user_cadastro', '=', $data['id_user_cadastro'])->get();
+        else:
+            $userSelecionado = 0;
+            $fichas = Ficha::all();
+        endif;
+
+        return view('ficha.relatorio', compact('fichas', 'lideranca', 'userSelecionado'));
     }
 
     /**
@@ -66,6 +84,7 @@ class FichaController extends Controller
         $storeData['instagram'] = $request->get('instagram');
         $storeData['id_area_atuacao'] = $request->get('id_area_atuacao');
         $storeData['outra_atuacao'] = $request->get('outra_atuacao');
+        $storeData['aniversario'] = $request->get('aniversario');
 
         try {
             Ficha::create($storeData);
@@ -133,6 +152,7 @@ class FichaController extends Controller
         $updateData['instagram'] = $request->get('instagram');
         $updateData['id_area_atuacao'] = $request->get('id_area_atuacao');
         $updateData['outra_atuacao'] = $request->get('outra_atuacao');
+        $updateData['aniversario'] = $request->get('aniversario');
 
         try {
             Ficha::whereId($id)->update($updateData);

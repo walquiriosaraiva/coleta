@@ -19,7 +19,15 @@ class PerfilTableSeeder extends Seeder
         ]);
 
         Perfil::create([
+            'name' => 'Líder cidade'
+        ]);
+
+        Perfil::create([
             'name' => 'Liderança'
+        ]);
+
+        Perfil::create([
+            'name' => 'Pessoa'
         ]);
     }
 }

@@ -26,6 +26,24 @@
                                 @endif
                             </div>
 
+                            <form action="{{ route('fichas.pesquisa-relatorio') }}" name="formPesquisa"
+                                  id="formPesquisa"
+                                  method="post">
+                                @method('POST')
+                                @csrf
+                                <div class="form-group row">
+                                    <label for="id_user_cadastro" class="col-form-label">Liderança</label>
+                                    <select class="form-control" data-live-search="true" id="id_user_cadastro"
+                                            name="id_user_cadastro">
+                                        <option data-tokens="ketchup mustard" value="">Selecione</option>
+                                        @foreach($lideranca as $lider)
+                                            <option data-tokens="ketchup mustard"
+                                                    value="{{$lider->id}}" {{ $lider->id === $userSelecionado ? 'selected' : '' }} >{{$lider->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </form>
+
                             <table class="table table-responsive-lg table-striped" style="width:100%"
                                    id="tabelaFichas">
                                 <thead>
@@ -71,6 +89,10 @@
     <script>
 
         $(document).ready(function () {
+
+            $('#id_user_cadastro').change(function () {
+                $('#formPesquisa').submit();
+            });
 
             $('#tabelaFichas').DataTable({
                 "language": {
