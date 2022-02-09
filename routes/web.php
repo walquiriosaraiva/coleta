@@ -44,8 +44,8 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:web'], function () {
 
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('user/{id}/edit', [UsuarioController::class, 'edit'])->name('user.edit');
-    Route::put('user/{id}', [UsuarioController::class, 'update'])->name('user.update');
+    Route::get('user/{id}/edit', [UsuarioController::class, 'editPerfil'])->name('user.edit');
+    Route::put('user/{id}', [UsuarioController::class, 'updatePerfil'])->name('user.update');
 
     /**
      * crud de usuários

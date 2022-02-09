@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'id_perfil'
+        'id_perfil',
+        'id_user_cadastrou'
     ];
 
     /**
@@ -46,5 +47,10 @@ class User extends Authenticatable
     public function perfil()
     {
         return $this->hasMany(Perfil::class, 'id', 'id_perfil');
+    }
+
+    public function userCadastro()
+    {
+        return $this->hasMany(User::class, 'id', 'id_user_cadastrou');
     }
 }

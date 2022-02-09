@@ -19,8 +19,21 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        if ($this->perfil()):
+            $users = User::where('id_user_cadastrou', '=', auth()->user()->id)->get();
+        else:
+            $users = User::all();
+        endif;
+
         return view('user.index', compact('users'));
+    }
+
+    /**
+     * @return bool
+     */
+    public function perfil()
+    {
+        return in_array(auth()->user()->id_perfil, [2]);
     }
 
     /**
@@ -28,7 +41,12 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        $perfis = Perfil::all();
+        if ($this->perfil()):
+            $perfis = Perfil::whereIn('id', [3, 4])->get();
+        else:
+            $perfis = Perfil::all();
+        endif;
+
         return view('user.create', compact('perfis'));
     }
 
@@ -40,6 +58,7 @@ class UsuarioController extends Controller
                 'email' => $request->get('email'),
                 'password' => Hash::make($request->get('password')),
                 'id_perfil' => $request->get('id_perfil'),
+                'id_user_cadastrou' => auth()->user()->id
             ]);
 
             return redirect()->route('users.index')
@@ -60,7 +79,25 @@ class UsuarioController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('user.edit', compact('user'));
+        if ($this->perfil()):
+            $perfis = Perfil::whereIn('id', [3, 4])->get();
+        else:
+            $perfis = Perfil::all();
+        endif;
+
+        return view('user.edit', compact('user', 'perfis'));
+    }
+
+    public function editPerfil($id)
+    {
+        $user = User::findOrFail($id);
+        $perfis = Perfil::all();
+
+        if (in_array(auth()->user()->id_perfil, [2, 3, 4])):
+            return view('user.perfil', compact('user', 'perfis'));
+        else:
+            return view('user.edit', compact('user', 'perfis'));
+        endif;
     }
 
     /**
@@ -69,6 +106,36 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
+    {
+        $updateData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email'
+        ]);
+
+        $updateData['id_perfil'] = (int)$request->get('id_perfil');
+
+        if ($request->get('password')):
+            $updateData['password'] = Hash::make($request->get('password'));
+        endif;
+
+        if (User::whereId($id)->update($updateData)):
+            return redirect()->route('users.index')
+                ->withInput()
+                ->with(['success' => 'Usuário atualizado com sucesso']);
+        else:
+            return redirect()->route('users.edit', $id)
+                ->withInput()
+                ->with(['error' => 'Erro ao tentar atualizar o usuário']);
+        endif;
+
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updatePerfil(Request $request, $id)
     {
         $updateData = $request->validate([
             'name' => 'required|max:255',

@@ -32,9 +32,11 @@
                                 <tr>
                                     <td>ID</td>
                                     <td>Nome</td>
-                                    <td>Telefone</td>
+                                    <td>Data de nascimento</td>
                                     <td>Data de cadastro</td>
-                                    <td class="text-center">Ações</td>
+                                    @if(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id === 1)
+                                        <td class="text-center">Ações</td>
+                                    @endif
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -42,22 +44,24 @@
                                     <tr>
                                         <td>{{$ficha->id}}</td>
                                         <td>{{$ficha->nome}}</td>
-                                        <td>{{$ficha->telefone}}</td>
+                                        <td>{{$ficha->aniversario}}</td>
                                         <td>{{$ficha->data_cadastro->format('d/m/Y')}}</td>
-                                        <td class="text-center">
-                                            <a href="{{ route('fichas.show', $ficha->id)}}"
-                                               class="btn btn-primary btn-sm">Detalhes</a>
-                                            <a href="{{ route('fichas.edit', $ficha->id)}}"
-                                               class="btn btn-primary btn-sm">Editar</a>
-                                            <form action="{{ route('fichas.destroy', $ficha->id)}}" method="post"
-                                                  style="display: inline-block">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger btn-sm"
-                                                        type="submit">Excluir
-                                                </button>
-                                            </form>
-                                        </td>
+                                        @if(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id === 1)
+                                            <td class="text-center">
+                                                <a href="{{ route('fichas.show', $ficha->id)}}"
+                                                   class="btn btn-primary btn-sm">Detalhes</a>
+                                                <a href="{{ route('fichas.edit', $ficha->id)}}"
+                                                   class="btn btn-primary btn-sm">Editar</a>
+                                                <form action="{{ route('fichas.destroy', $ficha->id)}}" method="post"
+                                                      style="display: inline-block">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger btn-sm"
+                                                            type="submit">Excluir
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -92,12 +96,7 @@
                         "previous": "Anterior"
                     }
                 },
-                dom: 'Bfrtip',
-                responsive: true,
-                pageLength: 25,
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
+                responsive: true
 
             });
 

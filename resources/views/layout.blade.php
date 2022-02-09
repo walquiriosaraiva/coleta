@@ -61,11 +61,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('perfil.index') }}">Perfis</a>
                             </li>
+                        @endif
 
+                        @if(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id === 1 || \Illuminate\Support\Facades\Auth::user()->perfil[0]->id === 2)
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('users.index') }}">Usuários</a>
                             </li>
-
                         @endif
 
                         <li class="nav-item">

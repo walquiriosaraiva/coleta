@@ -33,7 +33,7 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('users.update', $user->id) }}" method="post">
+                            <form action="{{ route('user.update', $user->id) }}" method="post">
                                 @method('PUT')
                                 @csrf
                                 <div class="form-group row">
@@ -56,11 +56,11 @@
                                     <label for="id_perfil" class="col-md-4 col-form-label text-md-right">Perfil</label>
                                     <div class="col-md-6">
                                         <select class="form-control" id="id_perfil"
-                                                name="id_perfil">
+                                                name="id_perfil" disabled>
                                             <option data-tokens="ketchup mustard" value="">Selecione</option>
                                             @foreach($perfis as $perfil)
                                                 <option data-tokens="ketchup mustard"
-                                                        value="{{$perfil->id}}" {{ $perfil->id === $user->id_perfil ? "selected" : ""  }}>{{$perfil->name}}</option>
+                                                        value="{{$perfil->id}}" {{ $perfil->id === $user->perfil[0]->id ? "selected" : ""  }}>{{$perfil->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>

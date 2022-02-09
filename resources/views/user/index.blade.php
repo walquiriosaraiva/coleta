@@ -46,14 +46,6 @@
                                         <td class="text-center">
                                             <a href="{{ route('users.edit', $user->id)}}"
                                                class="btn btn-primary btn-sm">Editar</a>
-                                            <form action="{{ route('users.destroy', $user->id)}}" method="post"
-                                                  style="display: inline-block">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger btn-sm"
-                                                        type="submit">Excluir
-                                                </button>
-                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
