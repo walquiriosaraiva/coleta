@@ -85,7 +85,8 @@
                         "next": "Próxima",
                         "previous": "Anterior"
                     }
-                }
+                },
+                "order": [[2, "desc"]]
             });
 
         });

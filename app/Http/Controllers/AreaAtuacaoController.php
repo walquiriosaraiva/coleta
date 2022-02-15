@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AreaAtuacao;
 use App\Models\Ficha;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class AreaAtuacaoController
@@ -18,7 +19,7 @@ class AreaAtuacaoController extends Controller
      */
     public function index()
     {
-        $areaAtuacao = AreaAtuacao::all();
+        $areaAtuacao = AreaAtuacao::orderBy('name', 'asc')->get();
         return view('area-atuacao.index', compact('areaAtuacao'));
     }
 
