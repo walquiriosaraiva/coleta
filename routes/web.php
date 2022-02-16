@@ -27,6 +27,11 @@ Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
 Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 
+Route::get('teste/{name}', function ($name) {
+    event(new App\Events\StatusLiked($name));
+    return "Evento enviado!";
+});
+
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:web'], function () {
 
     /**

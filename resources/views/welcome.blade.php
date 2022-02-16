@@ -59,14 +59,73 @@
 </footer>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//js.pusher.com/3.1/pusher.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 
+<script type="text/javascript">
+    var notificationsWrapper = $('.dropdown-notifications');
+    var notificationsToggle = notificationsWrapper.find('a[data-toggle]');
+    var notificationsCountElem = notificationsToggle.find('i[data-count]');
+    var notificationsCount = parseInt(notificationsCountElem.data('count'));
+    var notifications = notificationsWrapper.find('ul.dropdown-menu');
+
+    if (notificationsCount <= 0) {
+        notificationsWrapper.hide();
+    }
+
+    // Enable pusher logging - don't include this in production
+    // Pusher.logToConsole = true;
+
+    var pusher = new Pusher('5a74c1be35b35a00046d', {
+        encrypted: true,
+        cluster: 'us2'
+    });
+
+    // Subscribe to the channel we specified in our Laravel Event
+    var channel = pusher.subscribe('my-channel');
+
+    // Bind a function to a Event (the full Laravel class)
+    channel.bind('App\\Events\\StatusLiked', function (data) {
+        var existingNotifications = notifications.html();
+        var avatar = Math.floor(Math.random() * (71 - 20 + 1)) + 20;
+        var newNotificationHtml = `
+          <li class="notification active">
+              <div class="media">
+                <div class="media-left">
+                  <div class="media-object">
+                    <img src="https://api.adorable.io/avatars/71/` + avatar + `.png" class="img-circle" alt="50x50" style="width: 50px; height: 50px;">
+                  </div>
+                </div>
+                <div class="media-body">
+                  <strong class="notification-title">` + data.message + `</strong>
+                  <!--p class="notification-desc">Extra description can go here</p-->
+                  <div class="notification-meta">
+                    <small class="timestamp">about a minute ago</small>
+                  </div>
+                </div>
+              </div>
+          </li>
+        `;
+        notifications.html(newNotificationHtml + existingNotifications);
+
+        notificationsCount += 1;
+        notificationsCountElem.attr('data-count', notificationsCount);
+        notificationsWrapper.find('.notif-count').text(notificationsCount);
+        notificationsWrapper.show();
+    });
+</script>
 </body>
 </html>
-<script src="{{ asset('/sw.js') }}"></script>
+<script src="{{ asset('/service-worker.js') }}"></script>
 <script>
     if (!navigator.serviceWorker.controller) {
-        navigator.serviceWorker.register("/sw.js").then(function (reg) {
-            console.log("Service worker has been registered for scope: " + reg.scope);
+        navigator.serviceWorker.register('./service-worker.js').then(function (reg) {
+            console.log('Service worker registrado com sucesso');
+        }).catch(function (err) {
+            console.warn('Service worker não foi registrado no escopo', err);
         });
     }
 </script>
