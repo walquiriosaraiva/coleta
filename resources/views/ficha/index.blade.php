@@ -46,20 +46,25 @@
                                         <td>{{$ficha->nome}}</td>
                                         <td>{{$ficha->aniversario}}</td>
                                         <td>{{$ficha->data_cadastro->format('d/m/Y')}}</td>
-                                        @if(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id === 1)
+                                        @if(in_array(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id, [1, 2, 3]))
                                             <td class="text-center">
-                                                <a href="{{ route('fichas.show', $ficha->id)}}"
-                                                   class="btn btn-primary btn-sm">Detalhes</a>
-                                                <a href="{{ route('fichas.edit', $ficha->id)}}"
-                                                   class="btn btn-primary btn-sm">Editar</a>
-                                                <form action="{{ route('fichas.destroy', $ficha->id)}}" method="post"
-                                                      style="display: inline-block">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger btn-sm"
-                                                            type="submit">Excluir
-                                                    </button>
-                                                </form>
+                                                @if(in_array(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id, [1, 2, 3]))
+                                                    <a href="{{ route('fichas.edit', $ficha->id)}}"
+                                                       class="btn btn-primary btn-sm">Editar</a>
+                                                @endif
+                                                @if(in_array(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id, [1]))
+                                                    <a href="{{ route('fichas.show', $ficha->id)}}"
+                                                       class="btn btn-primary btn-sm">Detalhes</a>
+                                                    <form action="{{ route('fichas.destroy', $ficha->id)}}"
+                                                          method="post"
+                                                          style="display: inline-block">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger btn-sm"
+                                                                type="submit">Excluir
+                                                        </button>
+                                                    </form>
+                                                @endif
                                             </td>
                                         @endif
                                     </tr>

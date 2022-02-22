@@ -20,7 +20,7 @@ class FichaController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->id_perfil === 3):
+        if (in_array(auth()->user()->id_perfil, [2, 3])):
             $fichas = Ficha::where('id_user_cadastro', '=', auth()->user()->id)->get();
         else:
             $fichas = Ficha::all();
