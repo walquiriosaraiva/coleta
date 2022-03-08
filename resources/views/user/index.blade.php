@@ -41,7 +41,7 @@
                                     <tr>
                                         <td>{{$user->id}}</td>
                                         <td>{{$user->name}}</td>
-                                        <td>{{$user->perfil[0]->name}}</td>
+                                        <td>{{isset($user->perfil) ? $user->perfil[0]->name : 'indefinido'}}</td>
 
                                         <td class="text-center">
                                             <a href="{{ route('users.edit', $user->id)}}"
