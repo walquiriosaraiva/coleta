@@ -56,7 +56,7 @@
                                     <label for="id_perfil" class="col-md-4 col-form-label text-md-right">Perfil</label>
                                     <div class="col-md-6">
                                         <select class="form-control" id="id_perfil"
-                                                name="id_perfil">
+                                                name="id_perfil" required>
                                             <option data-tokens="ketchup mustard" value="">Selecione</option>
                                             @foreach($perfis as $perfil)
                                                 <option data-tokens="ketchup mustard"
