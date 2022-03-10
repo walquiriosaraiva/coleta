@@ -100,8 +100,7 @@
                         "next": "Próxima",
                         "previous": "Anterior"
                     }
-                },
-                responsive: true
+                }
 
             });
 

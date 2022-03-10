@@ -108,7 +108,6 @@
                     }
                 },
                 dom: 'Bfrtip',
-                responsive: true,
                 pageLength: 25,
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'

@@ -83,7 +83,38 @@ class AuthController extends Controller
     public function dashboard()
     {
         if (Auth::check()) :
-            return view('dashboard');
+            $users = User::all();
+            $countAdmin = 0;
+            $countLiderCidade = 0;
+            $countLideranca = 0;
+            $countPessoas = 0;
+
+            foreach ($users as $key => $value):
+                if ($value->id_perfil === 1):
+                    $countAdmin++;
+                endif;
+
+                if ($value->id_perfil === 2):
+                    $countLiderCidade++;
+                endif;
+
+                if ($value->id_perfil === 3):
+                    $countLideranca++;
+                endif;
+
+                if ($value->id_perfil === 4):
+                    $countPessoas++;
+                endif;
+            endforeach;
+
+            $arrayPerfis = [
+                'Administrador' => $countAdmin,
+                'Líder cidade' => $countLiderCidade,
+                'Liderança' => $countLideranca,
+                'Pessoa' => $countPessoas
+            ];
+
+            return view('dashboard', compact('arrayPerfis'));
         endif;
 
         return redirect()->route('login')

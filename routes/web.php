@@ -1,24 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\FichaController;
 use App\Http\Controllers\AreaAtuacaoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PerfilController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,10 +15,6 @@ Route::get('/', function () {
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
 Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
-
-Route::get('alterar/{id}', function ($id) {
-    \App\Models\User::where('id', '=', $id)->update(['password' => Hash::make('admin')]);
-})->name('alterar');
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:web'], function () {
 
@@ -84,4 +68,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:web'], function () {
     Route::put('perfil/{id}', [PerfilController::class, 'update'])->name('perfil.update');
     Route::delete('perfil/{id}', [PerfilController::class, 'destroy'])->name('perfil.destroy');
     Route::get('perfil/{id}/edit', [PerfilController::class, 'edit'])->name('perfil.edit');
+
+    /**
+     * Página restrita
+     */
+
 });
