@@ -38,6 +38,7 @@ class FichaController extends Controller
         $lideranca = DB::table('users')
             ->select('users.id', 'users.name')
             ->join('perfil', 'perfil.id', '=', 'users.id_perfil')
+            ->where('users.id_perfil', '=', 3)
             ->get();
 
         $data = $request->all();

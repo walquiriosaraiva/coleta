@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Ficha;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -84,11 +85,14 @@ class AuthController extends Controller
     {
         if (Auth::check()) :
             $users = User::all();
+            $fichas = Ficha::all()->count();
+
             $countAdmin = 0;
             $countLiderCidade = 0;
             $countLideranca = 0;
             $countPessoas = 0;
 
+            //dd($users);
             foreach ($users as $key => $value):
                 if ($value->id_perfil === 1):
                     $countAdmin++;
@@ -109,10 +113,12 @@ class AuthController extends Controller
 
             $arrayPerfis = [
                 'Administrador' => $countAdmin,
-                'Líder cidade' => $countLiderCidade,
-                'Liderança' => $countLideranca,
-                'Pessoa' => $countPessoas
+                'LiderCidade' => $countLiderCidade,
+                'Lideranca' => $countLideranca,
+                'Pessoa' => $countPessoas,
+                'Fichas' => $fichas,
             ];
+
 
             return view('dashboard', compact('arrayPerfis'));
         endif;

@@ -31,7 +31,7 @@
                                                 <div class="ms-2 me-auto">
                                                     <div class="fw-bold"><i class="bi bi-person-lines-fill me-3"></i>
                                                         Líderes de cidades - <span
-                                                            class="font-weight-bold">{{$arrayPerfis['Líder cidade']}}</span>
+                                                            class="font-weight-bold">{{$arrayPerfis['LiderCidade']}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -45,7 +45,7 @@
                                                 <div class="ms-2 me-auto">
                                                     <div class="fw-bold"><i class="bi bi-diagram-3 me-3"></i> Lideranças
                                                         - <span
-                                                            class="font-weight-bold">{{$arrayPerfis['Liderança']}}</span>
+                                                            class="font-weight-bold">{{$arrayPerfis['Lideranca']}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -60,7 +60,7 @@
                                                     <div class="fw-bold"><i class="bi bi-diagram-3 me-3"></i> Fichas de
                                                         Pessoas -
                                                         <span
-                                                            class="font-weight-bold">{{$arrayPerfis['Pessoa']}}</span>
+                                                            class="font-weight-bold">{{$arrayPerfis['Fichas']}}</span>
                                                     </div>
                                                 </div>
                                             </div>
