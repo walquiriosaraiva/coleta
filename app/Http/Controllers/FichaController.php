@@ -40,7 +40,7 @@ class FichaController extends Controller
             ->join('perfil', 'perfil.id', '=', 'users.id_perfil')
             ->where('users.id_perfil', '=', 3)
             ->get()
-            ->sortBy('users.name');
+            ->sort('users.name');
 
         $data = $request->all();
         if (isset($data['id_user_cadastro']) && $data['id_user_cadastro']):
