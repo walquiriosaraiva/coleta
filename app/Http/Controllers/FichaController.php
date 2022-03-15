@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AreaAtuacao;
 use App\Models\Ficha;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,12 +36,22 @@ class FichaController extends Controller
      */
     public function relatorio(Request $request)
     {
-        $lideranca = DB::table('users')
-            ->select('users.id', 'users.name')
-            ->join('perfil', 'perfil.id', '=', 'users.id_perfil')
-            ->where('users.id_perfil', '=', 3)
-            ->orderBy('users.name', 'asc')
-            ->get();
+        if (auth()->user()->id_perfil === 2):
+            $lideranca = DB::table('users')
+                ->select('users.id', 'users.name')
+                ->join('perfil', 'perfil.id', '=', 'users.id_perfil')
+                ->where('users.id_perfil', '=', 3)
+                ->where('users.id_user_cadastrou', '=', auth()->user()->id)
+                ->orderBy('users.name', 'asc')
+                ->get();
+        else:
+            $lideranca = DB::table('users')
+                ->select('users.id', 'users.name')
+                ->join('perfil', 'perfil.id', '=', 'users.id_perfil')
+                ->where('users.id_perfil', '=', 3)
+                ->orderBy('users.name', 'asc')
+                ->get();
+        endif;
 
         $data = $request->all();
         if (isset($data['id_user_cadastro']) && $data['id_user_cadastro']):
@@ -48,7 +59,12 @@ class FichaController extends Controller
             $fichas = Ficha::where('id_user_cadastro', '=', $data['id_user_cadastro'])->get();
         else:
             $userSelecionado = 0;
-            $fichas = Ficha::all();
+            if (auth()->user()->id_perfil === 2):
+                $fichaLiderados = User::where('id_user_cadastrou', '=', auth()->user()->id)->get('id')->toArray();
+                $fichas = Ficha::whereIn('id_user_cadastro', $fichaLiderados)->get();
+            else:
+                $fichas = Ficha::all();
+            endif;
         endif;
 
         return view('ficha.relatorio', compact('fichas', 'lideranca', 'userSelecionado'));

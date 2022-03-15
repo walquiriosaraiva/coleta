@@ -47,12 +47,14 @@
                                 pessoa</a>
                         </li>
 
-                        @if(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id === 1)
-
+                        @if(in_array(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id, array(1,2)))
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('fichas.relatorio') }}">Relatório de
                                     pessoas</a>
                             </li>
+                        @endif
+
+                        @if(\Illuminate\Support\Facades\Auth::user()->perfil[0]->id === 1)
 
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('area-atuacao.index') }}">Área de atuação</a>
