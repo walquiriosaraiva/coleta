@@ -44,7 +44,7 @@
                                 </div>
                             </form>
 
-                            <table class="table table-responsive-lg table-striped" style="width:100%"
+                            <table class="table table-responsive-lg table-striped"
                                    id="tabelaFichas">
                                 <thead>
                                 <tr>
