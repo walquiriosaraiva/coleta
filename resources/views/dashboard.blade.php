@@ -16,7 +16,7 @@
                                             <div class="d-flex justify-content-between align-items-start">
                                                 <div class="ms-2 me-auto">
                                                     <div class="fw-bold"><i class="bi bi-person-lines-fill me-3"></i>
-                                                        Administradores - <span
+                                                        Administradores: <span
                                                             class="font-weight-bold">{{$arrayPerfis['Administrador']}}</span>
                                                     </div>
                                                 </div>
@@ -30,7 +30,7 @@
                                             <div class="d-flex justify-content-between align-items-start">
                                                 <div class="ms-2 me-auto">
                                                     <div class="fw-bold"><i class="bi bi-person-lines-fill me-3"></i>
-                                                        Líderes de cidades - <span
+                                                        Líderes de cidades: <span
                                                             class="font-weight-bold">{{$arrayPerfis['LiderCidade']}}</span>
                                                     </div>
                                                 </div>
@@ -43,8 +43,8 @@
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-start">
                                                 <div class="ms-2 me-auto">
-                                                    <div class="fw-bold"><i class="bi bi-diagram-3 me-3"></i> Lideranças
-                                                        - <span
+                                                    <div class="fw-bold"><i class="bi bi-diagram-3 me-3"></i>
+                                                        Lideranças: <span
                                                             class="font-weight-bold">{{$arrayPerfis['Lideranca']}}</span>
                                                     </div>
                                                 </div>
@@ -58,9 +58,9 @@
                                             <div class="d-flex justify-content-between align-items-start">
                                                 <div class="ms-2 me-auto">
                                                     <div class="fw-bold"><i class="bi bi-diagram-3 me-3"></i> Fichas de
-                                                        Pessoas -
+                                                        Pessoas:
                                                         <span
-                                                            class="font-weight-bold">{{$arrayPerfis['Fichas']}}</span>
+                                                            class="font-weight-bold">{{$arrayPerfis['Fichas'] > 600 ? $arrayPerfis['Fichas'] : '+600'}}</span>
                                                     </div>
                                                 </div>
                                             </div>
