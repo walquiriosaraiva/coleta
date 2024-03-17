@@ -1,4 +1,4 @@
-FROM nginx:stable-alpine
+FROM nginx:1.24-alpine3.17
 
 ARG UID
 ARG GID
